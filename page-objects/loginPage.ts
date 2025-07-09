@@ -24,12 +24,15 @@ export class LoginPage {
         return this.page.locator('.orangehrm-copyright-wrapper p').first();
     }
     //Methods
+    /**
+     * Navigate to the login page
+     */
     async goToLoginPage() {
         await this.page.goto('/');
     }
     /**
      * 
-     * @param navigate should the login page be opened first
+     * @param navigate should the method navigate to the login page
      */
     async performLogin(navigate: boolean = true) {
         if (navigate) {
