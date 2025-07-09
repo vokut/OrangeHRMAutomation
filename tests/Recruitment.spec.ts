@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../page-objects/loginPage'
+import { LoginPage } from '../pages/loginPage'
 import { assert } from 'console';
 
 test('has title', async ({ page }) => {
