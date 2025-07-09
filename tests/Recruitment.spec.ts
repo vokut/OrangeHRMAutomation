@@ -7,5 +7,5 @@ test('has title', async ({ page }) => {
   await pom.goToLoginPage();
   await pom.assertVersion('OrangeHRM OS 5.7');
 
-  await pom.performLogin(false);
+  await pom.performLogin(false);;
 });
