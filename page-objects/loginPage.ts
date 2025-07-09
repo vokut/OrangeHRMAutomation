@@ -42,7 +42,10 @@ export class LoginPage {
         await this.passwordInput.fill('ToChange123!');
         await this.loginButton.click();
     }
-
+    /**
+     * 
+     * @param version expected version of OrangeHRM
+     */
     async assertVersion(version: string) {
         await expect(this.version).toHaveText(version)
     }
