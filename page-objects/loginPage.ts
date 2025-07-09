@@ -27,10 +27,12 @@ export class LoginPage {
     async goToLoginPage() {
         await this.page.goto('/');
     }
-
+    /**
+     * 
+     * @param navigate should the login page be opened first
+     */
     async performLogin(navigate: boolean = true) {
-        if (navigate)
-        {
+        if (navigate) {
             this.goToLoginPage();
         }
         await this.usernameInput.fill("vokut");
@@ -38,9 +40,8 @@ export class LoginPage {
         await this.loginButton.click();
     }
 
-    async assertVersion(version: string)
-    {
+    async assertVersion(version: string) {
         await expect(this.version).toHaveText(version)
     }
-    
+
 }
