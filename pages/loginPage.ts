@@ -39,7 +39,7 @@ export class LoginPage extends PageBase {
         if (navigate) {
             this.goToLoginPage();
         }
-        await this.usernameInput.fill(process.env.ORANGEHRM_USERNAME!);
+        await this.usernameInput.fill(process.env.ORANGEHRM_USER!);
         await this.passwordInput.fill(process.env.ORANGEHRM_PASSWORD!);
         await this.loginButton.click();
     }
