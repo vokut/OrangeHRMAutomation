@@ -7,7 +7,7 @@ test.beforeEach(async () => {
   //await sqlUtils.deleteCandidates();
 });
 
-test('has title', async ({ page }) => {
+test('Sample test', async ({ page }) => {
   const pm = new PageManager(page);
   await pm.loginPage.performLogin();
 

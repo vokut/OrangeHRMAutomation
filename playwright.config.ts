@@ -1,4 +1,4 @@
-import { defineConfig, devices } from '@playwright/test';
+import { defineConfig, devices, ReporterDescription } from '@playwright/test';
 //import type { TestOptions } from './test-options';
 /**
  * Read environment variables from file.
@@ -8,7 +8,16 @@ if (!process.env.CI) {
   require('dotenv').config();
 }
 
-
+const isCI = process.env.CI === 'true';
+const reporters: ReporterDescription[] = [
+  ...(isCI
+    ? [[
+        'allure-playwright',
+        { outputFolder: 'allure-results' },
+      ] as [string, any]]
+    : []),
+  ['html', { open: 'on-failure' }],
+];
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
@@ -23,11 +32,8 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: [
-    //['json', { outputFile: 'test-results/jsonReport.json' }],
-    ['allure-playwright', { outputFolder: 'allure-results' }],
-    ['html', { open: 'never' }],
-  ],
+  reporter: reporters,
+  
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */

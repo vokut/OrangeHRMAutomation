@@ -38,10 +38,21 @@ export class LoginPage extends PageBase {
         if (navigate) {
             this.goToLoginPage();
         }
+
+        /* for Allure report */ 
         await test.step('Fill login form with masked credentials', async () => {
             await this.usernameInput.fill(process.env.ORANGEHRM_USER!);
             await this.passwordInput.fill(process.env.ORANGEHRM_PASSWORD!);
         });
+        // Attach masked credentials manually:
+        await test.info().attach('Credentials Used', {
+            body: JSON.stringify({
+                username: '*****',
+                password: '****', // mask password
+            }),
+            contentType: 'application/json',
+        });
+
         await this.loginButton.click();
     }
     /**
