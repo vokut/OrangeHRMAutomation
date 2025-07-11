@@ -28,6 +28,7 @@ export class LoginPage extends PageBase {
      * Navigate to the login page
      */
     async goToLoginPage() {
+        console.log(`URL: ${process.env.ORANGEHRM_URL}`);
         await this.page.goto(process.env.ORANGEHRM_URL!);
     }
     /**

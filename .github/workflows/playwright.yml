@@ -8,7 +8,7 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
-    env:  # 👈 inject secrets into env variables
+    env: 
       ORANGEHRM_URL: ${{ secrets.ORANGEHRM_URL }}
       ORANGEHRM_USER: ${{ secrets.ORANGEHRM_USER }}
       ORANGEHRM_PASSWORD: ${{ secrets.ORANGEHRM_PASSWORD }}
