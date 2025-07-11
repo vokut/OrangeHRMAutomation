@@ -21,6 +21,11 @@ jobs:
       run: npm ci
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
+    - name: Check if environment variables are set
+      run: |
+        echo "ORANGEHRM_URL is ${ORANGEHRM_URL:+set}"
+        echo "ORANGEHRM_USER is ${ORANGEHRM_USER:+set}"
+        echo "ORANGEHRM_PASSWORD is ${ORANGEHRM_PASSWORD:+set}"
     - name: Run Playwright tests
       run: npx playwright test
     - uses: actions/upload-artifact@v4
