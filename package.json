@@ -9,6 +9,12 @@
   "description": "",
   "devDependencies": {
     "@playwright/test": "^1.53.2",
-    "@types/node": "^24.0.12"
+    "@types/node": "^24.0.12",
+    "allure-playwright": "^3.3.0"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.0",
+    "mysql2": "^3.14.1",
+    "mysql2-promise": "^0.1.4"
   }
 }

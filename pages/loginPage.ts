@@ -1,10 +1,10 @@
 import { expect, Locator, Page } from "@playwright/test";
+import { PageBase } from "./pageBase";
 
-export class LoginPage {
-    readonly page: Page
+export class LoginPage extends PageBase {
 
     constructor(page: Page) {
-        this.page = page;
+        super(page);
     }
 
     //Locators
@@ -28,7 +28,7 @@ export class LoginPage {
      * Navigate to the login page
      */
     async goToLoginPage() {
-        await this.page.goto('/');
+        await this.page.goto(process.env.ORANGEHRM_URL!);
     }
     /**
      * 
@@ -38,8 +38,8 @@ export class LoginPage {
         if (navigate) {
             this.goToLoginPage();
         }
-        await this.usernameInput.fill("vokut");
-        await this.passwordInput.fill('ToChange123!');
+        await this.usernameInput.fill(process.env.ORANGEHRM_USERNAME!);
+        await this.passwordInput.fill(process.env.ORANGEHRM_PASSWORD!);
         await this.loginButton.click();
     }
     /**
