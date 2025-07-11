@@ -1,4 +1,4 @@
-import { expect, Locator, Page } from "@playwright/test";
+import { expect, Locator, Page, test } from "@playwright/test";
 import { PageBase } from "./pageBase";
 
 export class LoginPage extends PageBase {
@@ -28,7 +28,6 @@ export class LoginPage extends PageBase {
      * Navigate to the login page
      */
     async goToLoginPage() {
-        console.log(`URL: ${process.env.ORANGEHRM_URL}`);
         await this.page.goto(process.env.ORANGEHRM_URL!);
     }
     /**
@@ -39,8 +38,10 @@ export class LoginPage extends PageBase {
         if (navigate) {
             this.goToLoginPage();
         }
-        await this.usernameInput.fill(process.env.ORANGEHRM_USER!);
-        await this.passwordInput.fill(process.env.ORANGEHRM_PASSWORD!);
+        await test.step('Fill login form with masked credentials', async () => {
+            await this.usernameInput.fill(process.env.ORANGEHRM_USER!);
+            await this.passwordInput.fill(process.env.ORANGEHRM_PASSWORD!);
+        });
         await this.loginButton.click();
     }
     /**
