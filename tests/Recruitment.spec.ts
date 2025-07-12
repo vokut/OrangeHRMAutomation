@@ -4,13 +4,12 @@ import { PageManager } from '../pages/pageManager';
 import { MenuItems } from '../pages/navigationPage';
 
 test.beforeEach(async () => {
-  //await sqlUtils.deleteCandidates();
+  await sqlUtils.deleteCandidates();
 });
 
 test('Sample test', async ({ page }) => {
   const pm = new PageManager(page);
   await pm.loginPage.performLogin();
-
   await pm.navigationPage.clickMenuItem(MenuItems.Recruitment);
 
   await expect(page.locator('p', { hasText: 'No Records Found' })).toBeVisible();

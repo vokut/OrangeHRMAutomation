@@ -30,18 +30,19 @@ export class LoginPage extends PageBase {
     async goToLoginPage() {
         await this.page.goto(process.env.ORANGEHRM_URL!);
     }
+
+    
     /**
      * 
      * @param navigate should the method navigate to the login page
      */
     async performLogin(navigate: boolean = true) {
         if (navigate) {
-            this.goToLoginPage();
+            await this.goToLoginPage();
         }
 
         await this.usernameInput.fill(process.env.ORANGEHRM_USER!);
         await this.passwordInput.fill(process.env.ORANGEHRM_PASSWORD!);
-
         await this.loginButton.click();
     }
     /**

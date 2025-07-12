@@ -1,6 +1,9 @@
 import mysql from 'mysql2/promise';
 
 export async function deleteCandidates() {
+    if (process.env.CI === 'true') {
+        return; // Skip deletion in CI environment
+    }
     let connection;
     try {
         connection = await mysql.createConnection({
@@ -16,7 +19,6 @@ export async function deleteCandidates() {
      DELETE FROM ohrm_job_candidate_attachment; 
      DELETE FROM ohrm_job_candidate;`
         );
-        console.log('Candidates deleted successfully');
     } catch (error) {
         throw new Error('❌ Error deleting candidates:', error);
     } finally {
